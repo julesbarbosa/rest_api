@@ -1,11 +1,10 @@
 from flask import abort, Flask, request, jsonify
-import json
 from data import *
 
 app = Flask(__name__)
 
 
-@app.route("/all_work", methods=["GET"])
+@app.route("/all_work", methods=["POST", "GET"])
 def list_work_experience():
    return {"juliana work experiences": get_all_work_experience()}
 
@@ -18,6 +17,7 @@ def check_work_experience(id):
 @app.route("/set_work/<id>", methods=["POST"])
 def set_new_work_experience(id):
    data = request.json
+   print(data)
    if not data:
       abort(400, 'Missing new work')
    return {"Juliana work experience": create_new_work(int(id), data)}
@@ -39,4 +39,4 @@ def list_projects():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
