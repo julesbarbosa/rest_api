@@ -4,7 +4,7 @@ from data import *
 app = Flask(__name__)
 
 
-@app.route("/all_work", methods=["POST", "GET"])
+@app.route("/all_work", methods=["GET"])
 def list_work_experience():
    return {"juliana work experiences": get_all_work_experience()}
 
